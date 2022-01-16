@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Style Swiper</title>
+
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+		<!--  Simple reset -->
+		<style>
+			* {
+				margin:0;
+				padding:0;
+				border:0;
+			}
+		</style>
+
+		<!-- Style Swiper required styles -->
+		<link rel="stylesheet" href="css/style-swiper.css" type="text/css"/>
+
+		<!-- Example specific styles -->
+		<style>
+			.style-swiper-slides div {
+				width:50vw;
+				height:400px;
+			}
+			.style-swiper-slides div:nth-child(1){
+				background-color:red;
+			}
+			.style-swiper-slides div:nth-child(2){
+				background-color:green;
+			}
+			.style-swiper-slides div:nth-child(3){
+				background-color:blue;
+			}
+			.style-swiper-slides div:nth-child(4){
+				background-color:yellow;
+			}
+			.style-swiper-slides div:nth-child(5){
+				background-color:cyan;
+			}
+			.style-swiper-slides div:nth-child(6){
+				background-color:magenta;
+			}
+		</style>
+
+		<!-- Optional: Load FontAwesome from CDN -->
+		<link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+			  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+			  crossorigin="anonymous"
+			  rel="stylesheet">
+	</head>
+	<body>
+
+		<!-- Required: Container -->
+		<div id="myStyleSwiper" class="style-swiper-container">
+			<!-- Optional: This div just lets the buttons vertically center with the slides minus the pagination  -->
+			<div class="style-swiper-slide-btn-wrap">
+
+				<!-- Optional: Previous button -->
+				<button class="style-swiper-btn-prev" title="scroll previous">
+					<i class="fa fa-chevron-left"><!-- FontAwesome Icon--></i>
+				</button>
+
+				<!-- Required: Slides -->
+				<div class="style-swiper-slides hide-scrollbar">
+					<div>Slide 1</div>
+					<div>Slide 2</div>
+					<div>Slide 3</div>
+					<div>Slide 4</div>
+					<div>Slide 5</div>
+					<div>Slide 6</div>
+				</div>
+
+				<!-- Optional: Next button -->
+				<button class="style-swiper-btn-next" title="scroll next">
+					<i class="fa fa-chevron-right"><!-- FontAwesome Icon--></i>
+				</button>
+
+			</div>
+
+			<!-- Optional: Pagination -->
+			<div class="style-swiper-pagination-wrap">
+				<ol class="style-swiper-pagination"></ol>
+			</div>
+		</div>
+
+		<!-- CustomEvent polyfill for IE11 -->
+		<script>
+			(function () {
+				if ( typeof window.CustomEvent === "function" ) return false; //If not IE
+
+				function CustomEvent ( event, params ) {
+					params = params || { bubbles: false, cancelable: false, detail: undefined };
+					var evt = document.createEvent( 'CustomEvent' );
+					evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+					return evt;
+				}
+
+				CustomEvent.prototype = window.Event.prototype;
+
+				window.CustomEvent = CustomEvent;
+			})();
+		</script>
+
+		<!-- Resizer from https://github.com/koga73/Resizer -->
+		<!-- This caches on resize, if you exclude it will still work just no cache -->
+		<script src="js/resizer.js"></script>
+		<script src="js/style-swiper.js"></script>
+		<script>
+			var styleSwiper = new StyleSwiper({
+				debug:true,
+				el:document.getElementById("myStyleSwiper"),
+				events:true
+			});
+
+			//If you want to grab initially visible
+			var initialVisible = styleSwiper.getVisible();
+			console.log("Initially visible:", initialVisible);
+
+			//If you want to grab initially active
+			var initialActive = styleSwiper.getActive();
+			console.log("Initially active:", initialActive);
+
+			//If you want to register events when visible or active changes
+			var els = styleSwiper.getSlides();
+			for (var i = 0; i < els.length; i++){
+				var el = els[i];
+
+				//Listen for visibility change
+				el.addEventListener(styleSwiper.eventChangeVisible, function(evt){
+					console.log("Visibility change", evt, evt.detail);
+				});
+
+				//Listen for active change
+				el.addEventListener(styleSwiper.eventChangeActive, function(evt){
+					console.log("Active change", evt, evt.detail);
+				});
+			}
+		</script>
+	</body>
+</html>
