@@ -37,7 +37,7 @@ app.post("/", function(req, res) {
             if (data.main == undefined) {
                 res.render('index', { weather: null, error: 'Error, please try again' });
             } else {
-                let weatherText = `It's ${data.main.temp} degrees in ${data.name}!`;
+                let weatherText = `It's ${data.main.temp} degrees in ${data.name}, ${data.sys.country}!`;
                 res.render('index', { weather: weatherText, error: null });
             }
         }
