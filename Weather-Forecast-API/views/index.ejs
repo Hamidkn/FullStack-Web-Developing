@@ -23,21 +23,20 @@
                 <input type="text" name="city" placeholder="Enter the city" autofocus>
                 <button type="submit" name="submit">Enter</button>
             </form>
-            <span class="msg">
-                <% if(weather !== null){ %>
-                    <p>
+
+            <% if(weather !== null){ %>
+                <span class="msg">
                         <%= weather %>
                         
                         
-                    </p>
-                    <% } %>
-    
-                        <% if(error !== null){ %>
-                            <p>
-                                <%= error %>
-                            </p>
-                            <% } %>
-                        </span>
+                    </span>
+                <% } %>
+
+                    <% if(error !== null){ %>
+                        <p>
+                            <%= error %>
+                        </p>
+                        <% } %>
         </div>
     </section>
     <!-- <section class="ajax-selection">
