@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Joke Server App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <section class="top-banner">
+        <div class="container">
+            <h1 class="heading">Joke Server App</h1>
+            <form action="/" method="post">
+                <input type="text" name="jokecategory" placeholder="Enter category of Joke">
+                <br><input type="text" name="joketype" placeholder="Enter type of Joke">
+                <br><label for="">nsfw</label><input type="checkbox" name="nsfw" placeholder="nsfw">
+                <label for="">religious</label><input type="checkbox" name="religious" placeholder="religious">
+                <label for="">political</label><input type="checkbox" name="political" placeholder="political">
+                <label for="">racist</label><input type="checkbox" name="racist" placeholder="racist">
+                <label for="">sexist</label><input type="checkbox" name="sexist" placeholder="sexist">
+                <label for="">explicit</label><input type="checkbox" name="explicit" placeholder="explicit">
+                <br><button type="submit" name="submit">Submit</button>
+                <span class="msg">
+                    <% if(Joke !== null){ %>
+                        <p>
+                            <% Joke %> 
+                        </p>
+                    <% } %>
+                      
+                    <% if(error !== null){ %>
+                        <p>
+                            <%= error %>
+                        </p>
+                        <% } %>
+                </span>
+            </form>
+        </div>
+    </section>
+    <!-- <section></section> -->
+    <footer class="footer">
+        <div class="container">
+            <small>Made with <span>❤️</span> by <a href="http://hamidkeshmiri.ir">Hamid Keshmiri Neghab</a></small>
+        </div>
+    </footer>
+</body>
+
+</html>
