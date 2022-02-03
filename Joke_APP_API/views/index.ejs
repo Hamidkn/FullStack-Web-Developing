@@ -19,29 +19,36 @@
         <div class="container">
             <h1 class="heading">Joke Server App</h1>
             <form action="/" method="post">
-                <input type="text" name="jokecategory" placeholder="Enter category of Joke">
-                <br><input type="text" name="joketype" placeholder="Enter type of Joke">
-                <br><label for="">nsfw</label><input type="checkbox" name="nsfw" placeholder="nsfw">
-                <label for="">religious</label><input type="checkbox" name="religious" placeholder="religious">
-                <label for="">political</label><input type="checkbox" name="political" placeholder="political">
-                <label for="">racist</label><input type="checkbox" name="racist" placeholder="racist">
-                <label for="">sexist</label><input type="checkbox" name="sexist" placeholder="sexist">
-                <label for="">explicit</label><input type="checkbox" name="explicit" placeholder="explicit">
-                <br><button type="submit" name="submit">Submit</button>
+                <input class="category" type="text" name="jokecategory" placeholder="Enter category of Joke">
+                <input class="type" type="text" name="joketype" placeholder="Enter type of Joke">
+                <!-- <div class="labels"> -->
+                <p><label class="checkbox" for=""><input type="checkbox" name="nsfw" placeholder="nsfw">nsfw</label>
+                    <label class="checkbox" for=""><input type="checkbox" name="religious" placeholder="religious">religious</label>
+                    <label class="checkbox" for=""><input type="checkbox" name="political" placeholder="political">political</label>
+                    <label class="checkbox" for=""><input type="checkbox" name="racist" placeholder="racist">racist</label>
+                    <label class="checkbox" for=""><input type="checkbox" name="sexist" placeholder="sexist">sexist</label>
+                    <label class="checkbox" for=""><input type="checkbox" name="explicit" placeholder="explicit">explicit</label></p>
+                <!-- </div> -->
+
+                <!-- <div class="button"> -->
+                <button type="submit" name="submit">Submit</button>
+                <!-- </div> -->
+
+            </form>
+            <% if(joke !== null){ %>
                 <span class="msg">
-                    <% if(Joke !== null){ %>
-                        <p>
-                            <% Joke %> 
-                        </p>
-                    <% } %>
-                      
+                        <%= joke %> <br>
+                        <%= jokedelivery %>
+                        
+                        
+                    </span>
+                <% } %>
+
                     <% if(error !== null){ %>
                         <p>
                             <%= error %>
                         </p>
                         <% } %>
-                </span>
-            </form>
         </div>
     </section>
     <!-- <section></section> -->
