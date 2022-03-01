@@ -61,6 +61,6 @@ app.post("/", function(req, res) {
 })
 
 
-app.listen(port, function(req, res) {
+app.listen(process.env.PORT || port, function(req, res) {
     console.log(`Listening on port ${port}.`);
 })
