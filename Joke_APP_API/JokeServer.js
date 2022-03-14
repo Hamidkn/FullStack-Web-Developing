@@ -22,6 +22,7 @@ app.get("/", function(req, res) {
 app.post("/", function(req, res) {
     let category = req.body.jokecategory;
     let type = req.body.joketype;
+    console.log(type);
     let nsfw = req.body.nsfw;
     let religious = req.body.religious;
     let political = req.body.political;
@@ -84,6 +85,16 @@ app.post("/", function(req, res) {
                 let JokeText = data.setup;
                 let JokeDelivery = data.delivery;
                 res.render('index', { joke: JokeText, jokedelivery: JokeDelivery, error: null });
+            } else {
+                if (data.setup != null) {
+                    let JokeText = data.setup;
+                    let JokeDelivery = data.delivery;
+                    res.render('index', { joke: JokeText, jokedelivery: JokeDelivery, error: null });
+                } else {
+                    let JokeText = data.joke;
+                    res.render('index', { joke: JokeText, jokedelivery: null, error: null });
+                }
+
             }
             // let JokeText = data.joke;
             // // console.log(data);

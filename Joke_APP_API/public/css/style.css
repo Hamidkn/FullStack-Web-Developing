@@ -1,5 +1,5 @@
 :root {
-    --bg_main: #4c84e6;
+    --bg_main: #5a026b;
     --text_light: #fff;
     --text_med: #53627c;
     --text_dark: #1e2432;
@@ -16,8 +16,12 @@
 }
 
 a {
-    color: inherit;
+    color: var(--text_light);
     text-decoration: none;
+}
+
+small {
+    color: var(--text_light);
 }
 
 button {
@@ -122,8 +126,7 @@ body {
     font-weight: normal;
 }
 
-
-/* p {
+p {
     color: #aaa;
 }
 
@@ -138,7 +141,7 @@ p+p {
 form p {
     margin: 15px 0;
     color: #34495E;
-} */
+}
 
 .checkbox {
     font-family: system-ui, sans-serif;
