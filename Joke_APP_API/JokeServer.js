@@ -29,6 +29,9 @@ app.post("/", function(req, res) {
     let racist = req.body.racist;
     let sexist = req.body.sexist;
     let explicit = req.body.explicit;
+    let en = req.body.en;
+    let de = req.body.de;
+    let es = req.body.es;
     // console.log(religious)
     // exports.myHandler = async(req, res) => {
     //     const {
@@ -48,7 +51,14 @@ app.post("/", function(req, res) {
         // console.log(flags);
 
     // console.log(nsfw);
-    let url = `https://v2.jokeapi.dev/joke/${category}`;
+    if (de == 'on') {
+        lang = 'de'
+    } else if (es == 'on') {
+        lang = 'es'
+    } else if (en == 'on') {
+        lang = 'en'
+    }
+    let url = `https://v2.jokeapi.dev/joke/${category}?lang=${lang}`;
 
     request(url, function(err, response, body) {
         if (err) {

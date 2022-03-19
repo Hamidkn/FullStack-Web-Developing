@@ -1,6 +1,6 @@
 :root {
-    --bg_main: #5a026b;
-    --text_light: #fff;
+    --bg_main: #3b007e;
+    --text_light: rgb(255, 255, 255);
     --text_med: #53627c;
     --text_dark: #1e2432;
     --red: #ff1e42;
@@ -95,6 +95,7 @@ body {
 }
 
 .top-banner form input::placeholder {
+    font-size: 1rem;
     color: currentColor;
 }
 
@@ -151,6 +152,31 @@ form p {
     /* display: grid; */
     grid-template-columns: 1em auto;
     gap: 0.5em;
+}
+
+.column {
+    float: left;
+    width: auto;
+    /* padding-left: 5px; */
+    color: #c3112d;
+}
+
+h4 {
+    padding-left: 20px;
+}
+
+
+/* Clear floats after the columns */
+
+.row {
+    padding-bottom: 30px;
+}
+
+.row:after {
+    /* padding-left: 30px; */
+    content: "";
+    display: table;
+    clear: both;
 }
 
 

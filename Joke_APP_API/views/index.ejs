@@ -22,10 +22,32 @@
     <section class="top-banner">
         <div class="container">
             <h1 class="heading">Joke Server App</h1>
+            <div class="row">
+                <h4>CATEGORIES:</h4>
+                <div class="column">
+                    <h4>Programming</h4>
+                </div>
+                <div class="column">
+                    <h4>Misc</h4>
+                </div>
+                <div class="column">
+                    <h4>Dark</h4>
+                </div>
+                <div class="column">
+                    <h4>Pun</h4>
+                </div>
+                <div class="column">
+                    <h4>Spooky</h4>
+                </div>
+                <div class="column">
+                    <h4>Christmas</h4>
+                </div>
+
+            </div>
             <!-- <h1>Choose one category from the following list:</h1> -->
             <form action="/" method="post">
                 <input class="category" type="text" name="jokecategory" placeholder="Enter joke's category">
-                <input class="type" type="text" name="joketype" placeholder="Enter joke's type">
+                <input class="type" type="text" name="joketype" placeholder="Enter joke's type: single or twopart">
                 <!-- <div class="labels"> -->
                 <p>
                     <div class="form-check form-check-inline">
@@ -52,17 +74,11 @@
                         <input class="form-check-input" type="checkbox" name="explicit" placeholder="explicit">
                         <label class="form-check-label" for="">explicit</label>
                     </div>
-                    <!-- <label class="checkbox" for=""><input type="checkbox" name="nsfw" placeholder="nsfw">nsfw</label>
-                    <label class="checkbox" for=""><input type="checkbox" name="religious" placeholder="religious">religious</label>
-                    <label class="checkbox" for=""><input type="checkbox" name="political" placeholder="political">political</label>
-                    <label class="checkbox" for=""><input type="checkbox" name="racist" placeholder="racist">racist</label>
-                    <label class="checkbox" for=""><input type="checkbox" name="sexist" placeholder="sexist">sexist</label>
-                    <label class="checkbox" for=""><input type="checkbox" name="explicit" placeholder="explicit">explicit</label> -->
                 </p>
                 <p>
                     <h3 class="checkbox" for="">Select language: </h3>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="en" placeholder="en" checked>
+                        <input class="form-check-input" type="checkbox" name="en" placeholder="en">
                         <label class="form-check-label" for="">en - English</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -70,8 +86,8 @@
                         <label class="form-check-label" for="">de - Germany</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="cz" placeholder="cz">
-                        <label class="form-check-label" for="">cz - Czech</label>
+                        <input class="form-check-input" type="checkbox" name="es" placeholder="es">
+                        <label class="form-check-label" for="">es - Spanish</label>
                     </div>
                 </p>
 
