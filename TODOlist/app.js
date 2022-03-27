@@ -16,10 +16,9 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
     extended: true
 }))
-const port = 3000;
 
 //connect to the database
-mongoose.connect("mongodb+srv://admin-Hamid:hamid123@cluster0.oewjw.mongodb.net/todolistDB");
+mongoose.connect("mongodb+srv://admin-Hamid:<Password>@cluster0.oewjw.mongodb.net/todolistDB");
 // let data = ["Workout"];
 // let workItems = [];
 const itemsSchema = {
@@ -143,6 +142,11 @@ app.post("/work", function(req, res) {
 app.get("/about", function(req, res) {
     res.render("about");
 })
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+    port = 3000;
+}
 
 app.listen(port, function() {
     console.log(`App is listening on ${port} `);
