@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 //connect to the database
-mongoose.connect("mongodb+srv://admin-Hamid:<Password>@cluster0.oewjw.mongodb.net/todolistDB");
+mongoose.connect("mongodb+srv://admin-Hamid:hamid123@cluster0.oewjw.mongodb.net/todolistDB");
 // let data = ["Workout"];
 // let workItems = [];
 const itemsSchema = {
