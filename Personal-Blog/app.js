@@ -6,10 +6,12 @@ const ejs = require('ejs');
 const { json } = require('body-parser');
 const _ = require('lodash');
 truncate = require('truncate');
+const mongoose = require('mongoose');
 
-const homeStartingContent = "Lacus vel facilisis volutpat est velit egestas dui id ornare. Semper auctor neque vitae tempus quam. Sit amet cursus sit amet dictum sit amet justo. Viverra tellus in hac habitasse. Imperdiet proin fermentum leo vel orci porta. Donec ultrices tincidunt arcu non sodales neque sodales ut. Mattis molestie a iaculis at erat pellentesque adipiscing. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Odio euismod lacinia at quis risus sed vulputate odio ut. Cursus mattis molestie a iaculis at erat pellentesque adipiscing.";
-const aboutContent = "Hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Non diam phasellus vestibulum lorem sed. Platea dictumst quisque sagittis purus sit. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Mauris in aliquam sem fringilla. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Amet massa vitae tortor condimentum lacinia quis vel eros. Enim ut tellus elementum sagittis vitae. Mauris ultrices eros in cursus turpis massa tincidunt dui.";
-const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
+const homeStartingContent = "In this Blog, I will share my experiences and thoughts about my life. This is the first blog I have written. I hope you enjoy it. Stay tuned for more!";
+const aboutContent = "This is a Personal Blog. It is a place where I can write about my life, my work in general. I hope you enjoy it.";
+const contactContent = "You can be in touch with me on any of the following platforms: \n Email: hamid.keshmiri@gmail.\n LinkedIn: https://www.linkedin.com/in/hamid-keshmiri-a9b8b8b2   \n Website: https://hamidkeshmiri.com ";
+mongoose.connect("mongodb://localhost:27017/personalBlogDB");
 
 const app = express();
 app.set("view engine", 'ejs');
@@ -18,10 +20,49 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 const port = 3000;
-let posts = [];
+// let posts = [];
+
+const postItemsSchema = {
+    title: String,
+    post: String
+}
+
+const Post = mongoose.model("Post", postItemsSchema);
+
+const homePost = new Post({
+    title: "Home",
+    post: homeStartingContent
+});
+
+const aboutpost = new Post({
+    title: "About",
+    post: aboutContent
+});
+
+const contactPost = new Post({
+    title: "Contact",
+    post: contactContent
+});
+
+const homePostsItems = [homePost];
+// homePost.save();
 
 app.get("/", function(req, res) {
-    res.render("home", { homeContent: homeStartingContent, posts: posts });
+    Post.find({}, function(err, foundItems) {
+        if (foundItems.length === 0) {
+            Post.insertMany(homePostsItems, function(err) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("Successfully added default items to the database.");
+                }
+            });
+            res.redirect("/");
+        } else {
+            res.render("home", { posts: foundItems })
+        }
+    });
+    // res.render("home", { homeContent: homeStartingContent, posts: posts });
 });
 
 app.get("/about", function(req, res) {
@@ -37,20 +78,26 @@ app.get("/compose", function(req, res) {
 });
 
 app.post("/compose", function(req, res) {
-    var data = {
+    var data = new Post({
         title: req.body.postTitle,
         post: req.body.postBody
-    };
-    posts.push(data);
+    });
+    // posts.push(data);
+    data.save();
     res.redirect("/");
 });
 
-app.get("/posts/:postName", function(req, res) {
-    posts.forEach(function(post) {
-        if (_.lowerCase(req.params.postName) == _.lowerCase(post.title)) {
-            res.render("post", { title: post.title, post: post.post });
-        }
+app.get("/posts/:postId", function(req, res) {
+    // console.log(req.params.postId); // day 1
+    const customPostId = req.params.postId;
+    Post.findOne({ _id: customPostId }, function(err, foundItem) {
+        res.render("post", { posts: foundItem });
     });
+    // posts.forEach(function(post) {
+    //     if (_.lowerCase(req.params.postName) == _.lowerCase(post.title)) {
+    //         res.render("post", { posts: post });
+    //     }
+    // });
     // res.send(req.params);
 });
 

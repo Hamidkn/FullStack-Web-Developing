@@ -1,15 +1,17 @@
 <%-  include("partials/header"); -%>
-    <h1>Home</h1>
-    <p>
-        <%= homeContent %>
-    </p>
 
     <% posts.forEach(function(post){ %>
         <h1>
             <%= post.title %>
         </h1>
         <p>
-            <%= post.post.substring(0, 100).concat('...') + " "  %> <a href="/posts/<%= post.title %>">Read more</a>
+            <% if (post.title === "Home") {%>
+
+                <%= post.post %>
+                    <% } else{ %>
+
+                        <%= post.post.substring(0, 100).concat('...') + " "  %> <a href="/posts/<%= post._id %>">Read more</a>
+                            <% } %>
         </p>
         <% })%>
 
