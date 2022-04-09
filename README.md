@@ -1,6 +1,6 @@
 # Fullstack Web Development Repo
 
-Here, you can find the application which I implemented through my way in the fullstack web development journey.
+Here, you can find the applications which I implemented through my way in the fullstack web development journey.
 
 In each folder, for installing th apackages just run:
 ```
