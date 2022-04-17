@@ -68,3 +68,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+## adding styling to the app
+https://www.npmjs.com/package/@material-ui/icons
+https://www.npmjs.com/package/@material-ui/core
+https://transparenttextures.com/
+
+# TODO: 
+Add backend to the app in order to save all the notes in DB.
